@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # 启动Flask应用
-CMD ["python", "./flaskr/webapp.py"]
+CMD ["python", "./flaskr/app.py"]

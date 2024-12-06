@@ -3,3 +3,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_COMMIT_ON_TEARDOWN  = False
 SECRET_KEY = 'dev'
 DEBUG = True
+
+# Flask-Security
+ADMIN_EMAIL = 'admin@domain.com'
+ADMIN_PASSWORD = 'admin'

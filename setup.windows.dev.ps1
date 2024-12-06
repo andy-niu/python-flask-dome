@@ -6,3 +6,6 @@ python3 -m venv .venv
 
 # activate venv
 .venv\Scripts\activate
+
+# set Variable FLASK_APP
+Set-Variable FLASK_APP=src.program

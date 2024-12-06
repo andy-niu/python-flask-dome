@@ -14,6 +14,13 @@ $ pip install -r requirements.txt
 $ pip install -e .
 
 # 运行
-$ flask --app flaskr init-db
-$ flask --app flaskr run --debug
+$ flask --app src init-db
+$ flask --app src run --debug
+```
+
+### 数据库迁移
+```
+$ flask --app src db init
+$ flask --app src db migrate
+$ flask --app src db upgrade
 ```

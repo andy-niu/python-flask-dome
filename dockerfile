@@ -10,8 +10,12 @@ COPY . /app
 # 安装依赖
 RUN pip install -r requirements.txt
 
+# 设置环境变量
+ENV FLASK_APP=src/program.py
+ENV FLASK_ENV=production
+
 # 暴露端口
 EXPOSE 5000
 
-# 启动Flask应用
-CMD ["python", "./flaskr/app.py"]
+# 启动 Flask 应用
+CMD ["flask", "run", "--host=0.0.0.0"]

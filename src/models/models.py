@@ -15,8 +15,7 @@ class Article(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
 
-    def __init__(self, id, title, content, author=None):
-        self.id = id
+    def __init__(self, title, content, author=None):
         self.title = title
         self.content = content
         self.author = author
@@ -92,6 +91,7 @@ class Navigation(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }   
+
 
 class NavigationPosition(Enum):
     Home = 1

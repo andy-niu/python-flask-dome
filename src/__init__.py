@@ -29,7 +29,7 @@ def create_app(test_config=None):
     Bootstrap5(app)
 
     # init the database
-    init_app(app)
+    init_db(app)
     # db.init_app(app)
     # from models import Article,User,Navigation,NavigationPosition
     # migrate.init_app(app, db)
@@ -42,10 +42,15 @@ def create_app(test_config=None):
     app.register_blueprint(program.bp)
 
     app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/article', endpoint='article')
+    app.add_url_rule('/article/<int:article_id>/view', endpoint='view_article')
+    app.add_url_rule('/article/create', endpoint='create_article')
+    app.add_url_rule('/article/<int:article_id>/edit', endpoint='edit_article')
+    app.add_url_rule('/article/<int:article_id>/remove', endpoint='remove_article')
 
     return app
 
-def init_app(app):
+def init_db(app):
     db.init_app(app)
     migrate.init_app(app, db)
     from models import Article,User,Navigation,NavigationPosition
@@ -53,20 +58,23 @@ def init_app(app):
         migrate.db.metadata.create_all(bind=db.engine)
 
 def init_data(app):
-    from models import User, Navigation, NavigationPosition
+    from models import User, Navigation, NavigationPosition, Article
     from config import ADMIN_EMAIL, ADMIN_PASSWORD
     with app.app_context():
         user = User.query.filter_by(email=ADMIN_EMAIL).first()
         if not user:
-            user = User(email=ADMIN_EMAIL, password=ADMIN_PASSWORD,name='admin', is_admin=True)
-            db.session.add(user)
-            user = User(email='andy@andy.cc', password='pass@1',name='Andy', is_admin=False)
-            db.session.add(user)
+            db.session.add(User(email=ADMIN_EMAIL, password=ADMIN_PASSWORD,name='admin', is_admin=True))
+            db.session.add(User(email='andy@andy.cc', password='pass@1',name='Andy', is_admin=False))
             db.session.commit()
         navs = Navigation.query.all()
         if not navs:
-            nav = Navigation(title='首页', position=NavigationPosition.Home.name, url='/')
-            db.session.add(nav)
-            nav = Navigation(title='文章', position=NavigationPosition.Home.name, url='/article')
-            db.session.add(nav)
+            db.session.add(Navigation(title='首页', position=NavigationPosition.Home.name, url='/'))
+            db.session.add(Navigation(title='文章', position=NavigationPosition.Home.name, url='/article'))
             db.session.commit()
+        navs = Article.query.all()
+        if not navs:
+            db.session.add(Article(title='Hello World', content='this is test context!', author="andy"))
+            for i in range(10):
+                db.session.add(Article(title='This is Test'+str(i), content='this is test context!', author="test"+str(i)))
+            db.session.commit()
+            

@@ -18,7 +18,7 @@ services:
       - "5000:5000"
     # 设置环境变量
     environment:
-      - FLASK_APP=app.py
-      - FLASK_ENV=development
+      - FLASK_APP=src/program.py
+      - FLASK_ENV=production
     # 启动命令
     command: flask run --host=0.0.0.0

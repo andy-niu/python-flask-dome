@@ -19,5 +19,5 @@ services:
       - FLASK_APP=src
       - FLASK_ENV=production
     # run command
-    #command: flask run --host=0.0.0.0
-    command: gunicorn -w 4
+    command: flask run --host=0.0.0.0
+    #command: gunicorn -w 4

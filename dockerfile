@@ -15,7 +15,7 @@ COPY . /app
 RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # install gunicorn
-RUN pip install gunicorn -i https://pypi.tuna.tsinghua.edu.cn/simple
+#RUN pip install gunicorn -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
 # 设置环境变量
@@ -26,6 +26,6 @@ ENV FLASK_ENV=production
 EXPOSE 5000
 
 # 启动 Flask 应用
-#CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"]
 # 运行Gunicorn
-CMD ["gunicorn", "-w", "4", "src"]
+#CMD ["gunicorn", "-w", "4", "src"]

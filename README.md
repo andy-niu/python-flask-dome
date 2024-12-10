@@ -28,4 +28,17 @@ $ flask --app src db upgrade
 ### Deploy Server
 ```
 $ docker-compose up --build -d
+
 ```
+
+### Dome
+- http://117.72.68.141:5000/
+
+### Repository
+- http://ddns.mzmalls.com:2052/andy/python-flask
+
+## Reference
+- https://flask.palletsprojects.com/zh-cn/stable/
+- https://flask-sqlalchemy.palletsprojects.com/en/stable/quickstart/
+- https://flask-migrate.readthedocs.io/en/latest/index.html
+- https://bootstrap-flask.readthedocs.io/en/stable/

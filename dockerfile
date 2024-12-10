@@ -12,7 +12,7 @@ WORKDIR /app
 COPY . /app
 
 # 安装依赖
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 设置环境变量
 ENV FLASK_APP=src/program.py

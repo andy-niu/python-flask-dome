@@ -16,7 +16,7 @@ services:
       - "5000:5000"
     # set environment variables
     environment:
-      - FLASK_APP=src.program:app
+      - FLASK_APP=src
       - FLASK_ENV=production
     # run command
     command: flask run --host=0.0.0.0

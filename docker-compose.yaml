@@ -1,0 +1,24 @@
+# 生成flask项目
+version: '3'
+services:
+  web:
+    # 构建镜像
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: flask
+    image: flask_web:latest
+    # 容器名称
+    container_name: flask_web
+    # 挂载目录
+    volumes:
+      - .:/code
+    # 暴露端口
+    ports:
+      - "5000:5000"
+    # 设置环境变量
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+    # 启动命令
+    command: flask run --host=0.0.0.0

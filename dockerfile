@@ -1,6 +1,10 @@
 # 构建Python flask项目镜像
 FROM python:3.9
 
+# set the maintainer label
+ARG TAG
+RUN echo "Building image with tag: $TAG"
+
 # 设置工作目录
 WORKDIR /app
 

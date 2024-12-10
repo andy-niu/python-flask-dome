@@ -24,3 +24,8 @@ $ flask --app src db init
 $ flask --app src db migrate
 $ flask --app src db upgrade
 ```
+
+### Deploy Server
+```
+$ docker-compose up --build -d
+```

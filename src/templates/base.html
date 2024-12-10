@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap-Flask Demo Application</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    {{ bootstrap.load_css() }}
+    {% block styles %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    {% endblock %}
     <style>
         pre {
             background: #ddd;
@@ -31,9 +34,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {{ render_nav_item('index', 'Home') }}
-                <li class="nav-item"><a class="nav-link" href="https://bootstrap-flask.readthedocs.io/" target="_blank">Documentation</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">Bootstrap Documentation</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/helloflask/bootstrap-flask" target="_blank">GitHub</a></li>
+                {{ render_nav_item('article', 'Article') }}
             </ul>
         </div>
         </div>
@@ -46,11 +47,14 @@
 
     <footer class="text-center">
         {% block footer %}
-            <small> &copy; 2018–<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/greyli">Grey Li</a>
+            <small> &copy; 2018–<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/baily1410" target="_blank">Andy</a>
             </small>
         {% endblock %}
     </footer>
 
-    {{ bootstrap.load_js() }}
+    {% block scripts %}
+        <!-- Bootstrap JS -->
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    {% endblock %}
 </body>
 </html>

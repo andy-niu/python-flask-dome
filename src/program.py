@@ -52,16 +52,20 @@ def article():
     page = request.args.get('page', 1, type=int)
     pagination = Article.query.order_by(db.desc(Article.id)).paginate(page=page, per_page=10)
     article = pagination.items
-    titles = [('id', '#'), ('title', 'Title'), ('author', 'Author'), ('content', 'Content'), ('created_at', 'Create Time')]
+    titles = [('id', '#'), ('title', 'Title'), ('author', 'Author'), ('created_at', 'Create Time')]
     data = []
     for msg in article:
-        data.append({'id': msg.id, 'text': msg.title, 'author': msg.author, 'title': msg.content, 'content': msg.content, 'created_at': msg.created_at})
-    return render_template('article/index.html', article=article, titles=titles, Article=Article, data=data)
+        data.append({'id': msg.id, 'text': msg.title, 'author': msg.author, 'title': msg.content, 'created_at': msg.created_at})
+    return render_template('article/index.html', article=article, titles=titles, Article=Article, data=data, pagination=pagination)
 
-@bp.route('/article/<int:article_id>/view')
+@bp.route('/article/<int:article_id>')
 def view_article(article_id):
     article = Article.query.get(article_id)
-    return jsonify(article.serialize())
+    if article is None:
+        flash('Article not found!')
+        return redirect(url_for('program.article'))
+    else:
+        return render_template('article/view.html', article=article)
 
 @bp.route('/article/create', methods=['GET', 'POST'])
 def create_article():

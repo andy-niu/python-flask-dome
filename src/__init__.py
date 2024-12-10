@@ -43,7 +43,7 @@ def create_app(test_config=None):
 
     app.add_url_rule('/', endpoint='index')
     app.add_url_rule('/article', endpoint='article')
-    app.add_url_rule('/article/<int:article_id>/view', endpoint='view_article')
+    app.add_url_rule('/article/<int:article_id>', endpoint='view_article')
     app.add_url_rule('/article/create', endpoint='create_article')
     app.add_url_rule('/article/<int:article_id>/edit', endpoint='edit_article')
     app.add_url_rule('/article/<int:article_id>/remove', endpoint='remove_article')

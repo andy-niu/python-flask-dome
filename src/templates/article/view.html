@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mt-5">{{article['title']}}</h1>
+<span class="badge bg-secondary">{{ article['created_at'] }}</span>
+<p class="lead">{{ article['content'] }}</p>
+<p>@{{ article['author'] }}</p>
+{% endblock %}

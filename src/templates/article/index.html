@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/table.html' import render_table %}
+{% from 'bootstrap5/pagination.html' import render_pager, render_pagination %}
 
 {% block content %}
-<h2>Table with actions</h2>
+<!-- <h2>Table with actions</h2>
 {{ render_table(article, urlize_columns=('text'), show_actions=True, model=Article,
                 view_url=('view_article', [('article_id', ':id')]),
                 edit_url=('edit_article', [('article_id', ':id')]),
@@ -13,6 +14,15 @@
 <h2>Table without SQLAlchemy</h2>
 <p>The <pre>data</pre> contains a list of dict: <pre>[{'field1': 'value', 'field2': 'value', ...}, {...}]</pre></p>
 <pre>{% raw %}{{ render_table(data, titles) }}{% endraw %}</pre>
-{{ render_table(data, titles) }}
+{{ render_table(data, titles) }} -->
+
+<h2>Article List</h2>
+{{ render_table(data, titles, show_actions=True,model=Article, 
+                view_url=('view_article', [('article_id', ':id')]),
+                edit_url=('edit_article', [('article_id', ':id')]),
+                delete_url=('remove_article', [('article_id', ':id')]),
+                new_url=url_for('create_article')) }}
+
+<div class="d-flex justify-content-center">{{ render_pagination(pagination) }}</div>
 
 {% endblock %}

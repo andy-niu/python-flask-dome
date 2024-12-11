@@ -35,7 +35,7 @@ $ docker-compose up --build -d
 - http://117.72.68.141:5000/
 
 ### Repository
-- http://ddns.mzmalls.com:2052/andy/python-flask
+- [http://ddns.mzmalls.com:2052/andy/python-flask](https://github.com/andy-niu/python-flask-dome.git)
 
 ## Reference
 - https://flask.palletsprojects.com/zh-cn/stable/

@@ -39,7 +39,9 @@ def create_app(test_config=None):
 
     # register the blueprint
     from . import program
+    from . import webapi
     app.register_blueprint(program.bp)
+    app.register_blueprint(webapi.bp)
 
     app.add_url_rule('/', endpoint='index')
     app.add_url_rule('/article', endpoint='article')

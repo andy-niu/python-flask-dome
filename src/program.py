@@ -1,13 +1,5 @@
-from flask import jsonify
 from markupsafe import escape
-from flask import Blueprint
-from flask import request, jsonify
-from flask import render_template
-from flask import redirect
-from flask import url_for
-from flask import session
-from flask import flash
-from flask import g
+from flask import Blueprint,request, jsonify,render_template,redirect,url_for,session,flash,g
 from werkzeug.exceptions import abort
 from models import Navigation,User,Article,NavigationPosition
 import sys

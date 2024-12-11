@@ -1,31 +1,25 @@
-# 构建Python flask项目镜像
-FROM python:3.9
+# build stage
+FROM python:3.10-alpine
+
+# set working directory
+WORKDIR /app
+
+# copy project files to working directory
+COPY . /app
+
+# install dependencies
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple && rm -rf /root/.cache/pip
 
 # set the maintainer label
 ARG TAG
 RUN echo "Building image with tag: $TAG"
 
-# 设置工作目录
-WORKDIR /app
-
-# 复制项目文件到工作目录
-COPY . /app
-
-# 安装依赖
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-# install gunicorn
-#RUN pip install gunicorn -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-
-# 设置环境变量
+# set environment variables
 ENV FLASK_APP=src
 ENV FLASK_ENV=production
 
-# 暴露端口
+# expose port
 EXPOSE 5000
 
-# 启动 Flask 应用
+# run Flask application
 CMD ["flask", "run", "--host=0.0.0.0"]
-# 运行Gunicorn
-#CMD ["gunicorn", "-w", "4", "src"]
